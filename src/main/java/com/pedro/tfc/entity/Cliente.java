@@ -1,8 +1,10 @@
 package com.pedro.tfc.entity;
 
 import jakarta.persistence.*;
+import lombok.Data;
 
 @Entity
+@Data
 @Table(name = "tb_cliente")
 public class Cliente {
 
@@ -12,10 +14,5 @@ public class Cliente {
 
     @Column(name = "nome", nullable = false)
     private String nome;
-
-
-    private String instagram;
-
-
 
 }
