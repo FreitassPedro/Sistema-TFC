@@ -3,8 +3,10 @@ package com.pedro.tfc.entity;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
+@Table(name = "tb_compra")
 public class Compra {
 
     @Id
@@ -14,15 +16,14 @@ public class Compra {
     @Column(name = "valor", nullable = false)
     private Integer valor;
 
-    @OneToMany
-    @JoinColumn(name = "ticket_id")
-    private Ticket ticket;
+    @OneToMany(mappedBy = "compra")
+    private List<Ticket> ticket;
 
     @OneToOne
     @JoinColumn(name = "cliente_id")
     private Cliente cliente;
 
-    @Column(name = "data", nullable = false)
-    private LocalDateTime data;
+    @Column(name = "data_compra", nullable = false)
+    private LocalDateTime dataCompra;
 
 }

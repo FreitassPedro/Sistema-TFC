@@ -3,6 +3,7 @@ package com.pedro.tfc.entity;
 import jakarta.persistence.*;
 
 @Entity
+@Table(name = "tb_cliente")
 public class Cliente {
 
     @Id
