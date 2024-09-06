@@ -1,7 +1,7 @@
 package com.pedro.tfc.controller;
 
 
-import com.pedro.tfc.dao.Pedido;
+import com.pedro.tfc.entity.dao.PedidoDTO;
 import com.pedro.tfc.entity.Ingresso;
 import com.pedro.tfc.entity.Transacao;
 import com.pedro.tfc.service.CompraService;
@@ -29,19 +29,19 @@ public class CompraController {
 
     @GetMapping
     public ResponseEntity<Transacao> gerarPedido() {
-        log.info("Gerando pedido");
+        log.info("Processando Pedido...");
 
-        Pedido pedido = gerarPedidoTeste();
-        if (pedido.valorPago() % pedido.valorIngresso() != 0) {
+        PedidoDTO pedidoDTO = gerarPedidoTeste();
+        if (pedidoDTO.valorPago() % pedidoDTO.valorIngresso() != 0) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         }
 
-        Transacao transacao = compraService.gerarTransacao(pedido);
+        Transacao transacao = compraService.criarTransacao(pedidoDTO);
 
 
-        List<Ingresso> ingressosGerados = ingressoService.gerarIngressos(pedido.valorPago(), pedido.valorIngresso());
-        ingressoService.definirTransacao(ingressosGerados, transacao);
-        compraService.definirDonoIngresso(pedido.nomes(), ingressosGerados);
+        List<Ingresso> ingressosGerados = ingressoService.gerarIngressos(pedidoDTO.valorPago(), pedidoDTO.valorIngresso());
+        ingressoService.associarIngressoATransacao(ingressosGerados, transacao);
+        compraService.definirDonoIngresso(pedidoDTO.nomes(), ingressosGerados);
 
 
         transacao.setIngresso(ingressosGerados);
@@ -52,7 +52,7 @@ public class CompraController {
         return ResponseEntity.status(HttpStatus.CREATED).body(transacao);
     }
 
-    private Pedido gerarPedidoTeste() {
+    private PedidoDTO gerarPedidoTeste() {
         int valorPago = 100;
         int valorIngresso = 50;
         String instagramComprovante = "@...";
@@ -60,9 +60,9 @@ public class CompraController {
         nomes.add("Pedro");
         nomes.add("Fabuloso");
 
-        Pedido pedido = new Pedido(valorPago, valorIngresso, nomes, instagramComprovante);
+        PedidoDTO pedidoDTO = new PedidoDTO(valorPago, valorIngresso, nomes, instagramComprovante);
 
-        return pedido;
+        return pedidoDTO;
     }
 
 

@@ -54,7 +54,7 @@ public class IngressoService {
         return ingressos;
     }
 
-    public void definirTransacao(List<Ingresso> ingressosGerados, Transacao transacao) {
+    public void associarIngressoATransacao(List<Ingresso> ingressosGerados, Transacao transacao) {
         for (Ingresso ingresso : ingressosGerados) {
             ingresso.setTransacao(transacao);
         }

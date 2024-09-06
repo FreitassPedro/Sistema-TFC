@@ -1,6 +1,6 @@
 package com.pedro.tfc.service;
 
-import com.pedro.tfc.dao.Pedido;
+import com.pedro.tfc.entity.dao.PedidoDTO;
 import com.pedro.tfc.entity.Cliente;
 import com.pedro.tfc.entity.Ingresso;
 import com.pedro.tfc.entity.Transacao;
@@ -50,13 +50,13 @@ public class CompraService {
     }
 
     @Transactional
-    public Transacao gerarTransacao(Pedido pedido) {
+    public Transacao criarTransacao(PedidoDTO pedidoDTO) {
         Transacao transacao = new Transacao();
 
-        transacao.setDataTransacao(LocalDateTime.now());
-        transacao.setValor(pedido.valorPago());
-        transacao.setInstagramComprovante(pedido.instagramComprovante());
-        transacao.setQuantiaIngressos(pedido.nomes().size());
+        transacao.setValor(pedidoDTO.valorPago());
+        transacao.setInstagramComprovante(pedidoDTO.instagramComprovante());
+        transacao.setQuantiaIngressos(pedidoDTO.nomes().size());
+
         transacaoRepository.save(transacao);
 
         return transacao;

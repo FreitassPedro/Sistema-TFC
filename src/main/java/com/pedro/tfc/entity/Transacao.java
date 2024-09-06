@@ -1,5 +1,6 @@
 package com.pedro.tfc.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -25,8 +26,9 @@ public class Transacao {
     @Column(name = "quantia_ingressos")
     private int quantiaIngressos;
 
-    @Column(name = "data_transacao", nullable = false)
-    private LocalDateTime dataTransacao;
+
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private LocalDateTime dataTransacao = LocalDateTime.now();
 
     @Column(name = "instagram_comprovante")
     private String instagramComprovante;
