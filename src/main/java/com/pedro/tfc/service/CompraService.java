@@ -1,51 +1,64 @@
 package com.pedro.tfc.service;
 
 import com.pedro.tfc.dao.Pedido;
-import com.pedro.tfc.entity.Compra;
-import com.pedro.tfc.entity.Ticket;
-import com.pedro.tfc.repository.CompraRepository;
+import com.pedro.tfc.entity.Cliente;
+import com.pedro.tfc.entity.Ingresso;
+import com.pedro.tfc.entity.Transacao;
+import com.pedro.tfc.repository.ClienteRepository;
+import com.pedro.tfc.repository.IngressoRepository;
+import com.pedro.tfc.repository.TransacaoRepository;
 import lombok.extern.slf4j.Slf4j;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Random;
+import java.time.LocalDateTime;
+import java.util.List;
 
 @Service
 @Slf4j
 public class CompraService {
 
     @Autowired
-    private CompraRepository compraRepository;
+    private ClienteRepository clienteRepository;
 
-    public Ticket gerarPedido(Pedido pedido) {
+    @Autowired
+    private IngressoRepository ingressoRepository;
 
-        Ticket ticket = gerarTicket();
-        log.info(ticket.toString());
+    @Autowired
+    private TransacaoRepository transacaoRepository;
 
-        return ticket;
-    }
 
-    public Ticket gerarTicket() {
-
-        Ticket ticket = new Ticket();
-        ticket.setCodigoConsumivel(this.gerarCodigoConsumivel());
-        ticket.setCoposDisponiveis(3);
-        ticket.setCompra(new Compra());
-
-        return ticket;
-    }
-
-    private String gerarCodigoConsumivel() {
-        String caracteres = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-        Random random = new Random();
-
-        StringBuilder codigo = new StringBuilder();
-        for (int i = 0; i < 6; i++) {
-            codigo.append(caracteres.charAt(random.nextInt(caracteres.length())));
+    public void definirDonoIngresso(List<String> nomes, List<Ingresso> ingressosGerados) {
+        if (nomes.size() != ingressosGerados.size() || nomes.isEmpty()) {
+            throw new IllegalArgumentException("Quantidade de nomes diferente da quantidade de ingressos");
         }
-        return codigo.toString();
 
+
+        for (int i = 0; i < nomes.size(); i++) {
+            Cliente cliente = new Cliente();
+            cliente.setNome(nomes.get(i));
+            ingressosGerados.get(i).setCliente(cliente);
+            clienteRepository.save(cliente);
+        }
+
+        ingressoRepository.saveAll(ingressosGerados);
+    }
+
+    public void salvarTransacao(Transacao transacao) {
+        transacaoRepository.saveAndFlush(transacao);
+    }
+
+    @Transactional
+    public Transacao gerarTransacao(Pedido pedido) {
+        Transacao transacao = new Transacao();
+
+        transacao.setDataTransacao(LocalDateTime.now());
+        transacao.setValor(pedido.valorPago());
+        transacao.setInstagramComprovante(pedido.instagramComprovante());
+        transacao.setQuantiaIngressos(pedido.nomes().size());
+        transacaoRepository.save(transacao);
+
+        return transacao;
     }
 }

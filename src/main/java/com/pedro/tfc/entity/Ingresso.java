@@ -6,8 +6,8 @@ import lombok.Data;
 
 @Entity
 @Data
-@Table(name = "tb_ticket")
-public class Ticket {
+@Table(name = "tb_ingresso")
+public class Ingresso {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,7 +21,11 @@ public class Ticket {
 
     @ManyToOne
     @JsonIgnore
-    @JoinColumn(name = "compra_id") // Mapeia o relacionamento inverso ManyToOne com Compra
-    private Compra compra;
+    @JoinColumn(name = "transacao_id") // Mapeia o relacionamento inverso ManyToOne com Compra
+    private Transacao transacao;
+
+    @OneToOne
+    @JoinColumn(name = "cliente_id")
+    private Cliente cliente;
 
 }
