@@ -1,7 +1,6 @@
-
-import { Link } from 'react-router-dom';
-
-import './styles.css';
+import { Link } from "react-router-dom";
+import ButtonIcon from "../../components/ButtonIcon/ButtonIcon";
+import "./styles.css";
 
 const Home = () => {
   return (
@@ -10,18 +9,19 @@ const Home = () => {
         <div className="home-content-container">
           <div>
             <h1>Controle de Vendas</h1>
-            <span className="text-the-caras"> The <span className="text-festival">Festival</span> Caras</span>
-            <p className="home-subtitle">
-                Ainda em desenvolvimento
-            </p>
+            <div className="animated-text">
+              <span className="text-the-caras">
+                The <span className="text-festival">Festival</span> Caras
+              </span>
+            </div>
+            <p className="home-subtitle">Ainda em desenvolvimento</p>
           </div>
           <div>
-            <Link to="/products">
-              
+            <Link to="/lista">
+              <ButtonIcon />
             </Link>
           </div>
         </div>
-        
       </div>
     </div>
   );

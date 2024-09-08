@@ -39,6 +39,7 @@
   height: auto;
 }
 
+
 @media (min-width: 576px) {
   .home-container {
     padding: 15px;
@@ -131,13 +132,31 @@
 
 
 .text-the-caras {
-  color: #804f28;
+  color: #382719;
   text-align: center;
   font-weight: bold;
+  text-align: center;
 }
 
 .text-festival {
-  color: rgb(41, 28, 77);
+  color: rgb(28, 16, 70);
   text-align: center;
   font-weight: bold;
+
+}
+
+.animated-text {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: bottom;
+  animation: fade-in-out 3s ease-in-out infinite;
+}
+
+@keyframes fade-in-out {
+  0%, 100% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
 }
