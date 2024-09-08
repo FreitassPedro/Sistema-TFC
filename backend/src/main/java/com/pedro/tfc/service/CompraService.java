@@ -1,5 +1,6 @@
 package com.pedro.tfc.service;
 
+import com.pedro.tfc.entity.dao.ClienteListaDTO;
 import com.pedro.tfc.entity.dao.PedidoDTO;
 import com.pedro.tfc.entity.Cliente;
 import com.pedro.tfc.entity.Ingresso;
@@ -12,7 +13,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -60,5 +60,9 @@ public class CompraService {
         transacaoRepository.save(transacao);
 
         return transacao;
+    }
+
+    public List<ClienteListaDTO> listarClientes() {
+        return clienteRepository.listarClientesComIngresso();
     }
 }
