@@ -1,7 +1,3 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
-import { BASE_URL } from "utils/requests";
-
 import "./styles.css";
 
 interface IngressoData {
@@ -10,15 +6,13 @@ interface IngressoData {
     codigoConsumivel: string;
     valor: number;
 }
-const DataTable = () => {
-  const [data, setData] = useState<IngressoData[]>([]);
-  useEffect(() => {
-    axios.get(`${BASE_URL}/api/dashboard/listar`).then((response) => {
-      setData(response.data);
-      console.log(response.data);
-    });
-  }, []);
 
+interface DataTableProps {
+    data: IngressoData[];
+}
+
+const DataTable: React.FC<DataTableProps> = ({data}) => {
+  
   return (
     <div className="table-responsive">
       <table className="table table-striped table-sm">
