@@ -16,6 +16,9 @@ public class Ingresso {
     @Column(name = "codigo_consumivel", nullable = false)
     private String codigoConsumivel;
 
+    @Column(name = "valor")
+    private Integer valor;
+
     @Column(name = "copos_disponiveis")
     private int coposDisponiveis = 3;
 

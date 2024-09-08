@@ -9,9 +9,9 @@ import java.util.List;
 
 public interface ClienteRepository  extends JpaRepository<Cliente, Integer> {
 
-    @Query("SELECT c.nome as nome, ing.codigoConsumivel as codigoConsumivel " +
+    @Query("SELECT ing.id as id, c.nome as nome, ing.codigoConsumivel as codigoConsumivel, ing.valor as valor " +
             "FROM Ingresso ing " +
             "INNER JOIN Cliente c ON c.id = ing.cliente.id " +
-            "ORDER BY c.nome")
+            "ORDER BY ing.id")
     List<ClienteListaDTO> listarClientesComIngresso();
 }

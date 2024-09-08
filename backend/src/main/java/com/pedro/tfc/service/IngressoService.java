@@ -28,7 +28,7 @@ public class IngressoService {
             quantiaIngressos++;
         }
 
-        return gerarListaIngressos(quantiaIngressos);
+        return gerarListaIngressos(quantiaIngressos, valorIngresso);
     }
 
     private String gerarCodigoConsumivel() {
@@ -43,10 +43,11 @@ public class IngressoService {
 
     }
 
-    private List<Ingresso> gerarListaIngressos(int quantiaIngressos) {
+    private List<Ingresso> gerarListaIngressos(int quantiaIngressos, int valorIngresso) {
         List<Ingresso> ingressos = new ArrayList<>();
         for (int i = 0; i < quantiaIngressos; i++) {
             Ingresso ingresso = new Ingresso();
+            ingresso.setValor(valorIngresso);
             ingresso.setCodigoConsumivel(gerarCodigoConsumivel());
             ingressos.add(ingresso);
 

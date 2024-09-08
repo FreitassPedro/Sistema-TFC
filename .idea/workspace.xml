@@ -5,16 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7aedde2a-5ce8-493a-8de2-d3214122de96" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/pedro/tfc/controller/CompraController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/pedro/tfc/controller/CompraController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/pedro/tfc/controller/DashboardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/pedro/tfc/controller/DashboardController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/pedro/tfc/entity/Ingresso.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/pedro/tfc/entity/Ingresso.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/pedro/tfc/entity/dao/ClienteListaDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/pedro/tfc/entity/dao/ClienteListaDTO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/pedro/tfc/repository/ClienteRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/pedro/tfc/repository/ClienteRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/pedro/tfc/service/CompraService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/pedro/tfc/service/CompraService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/AppRoutes.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/AppRoutes.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/pedro/tfc/service/IngressoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/pedro/tfc/service/IngressoService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

@@ -1,32 +1,48 @@
-import axios from 'axios';
-import { useEffect, useState } from 'react';
+import axios from "axios";
+import { useEffect, useState } from "react";
+import { BASE_URL } from "utils/requests";
 
+import "./styles.css";
 
+interface IngressoData {
+    id: number;
+    nome: string;
+    codigoConsumivel: string;
+    valor: number;
+}
 const DataTable = () => {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState<IngressoData[]>([]);
   useEffect(() => {
-    axios.get('https://api.example.com/data')
-      .then(response => {
-        setData(response.data);
-      });
+    axios.get(`${BASE_URL}/api/dashboard/listar`).then((response) => {
+      setData(response.data);
+      console.log(response.data);
+    });
   }, []);
 
   return (
-    <table>
-      <thead>
-        <tr>
-          <th>Column 1</th>
-          <th>Column 2</th>
-        </tr>
-      </thead>
-      <tbody>
-        {data.map((item, index) => (
-          <tr key={index}>
-            <td>{item.column1}</td>
-            <td>{item.column2}</td>
+    <div className="table-responsive">
+      <table className="table table-striped table-sm">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>Código Ingresso</th>
+            <th>Valor</th>
           </tr>
-        ))}
-      </tbody>
-    </table>
+        </thead>
+        <tbody>
+            {data.map((item) => (
+                <tr key={item.id}>
+                <td style={{width: '20px'}}>{item.id}</td>
+                <td style={{width: '60%'}}>{item.nome}</td>
+                <td>{item.codigoConsumivel}</td>
+                <td>R$ {item.valor}</td>
+                </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
   );
 };
+
+export default DataTable;
