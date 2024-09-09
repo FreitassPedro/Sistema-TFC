@@ -1,4 +1,3 @@
-import "./styles.css";
 
 interface IngressoData {
     id: number;
@@ -28,7 +27,7 @@ const DataTable: React.FC<DataTableProps> = ({data}) => {
             {data.map((item) => (
                 <tr key={item.id}>
                 <td style={{width: '20px'}}>{item.id}</td>
-                <td style={{width: '60%'}}>{item.nome}</td>
+                <td style={{width: '50%'}}>{item.nome}</td>
                 <td>{item.codigoConsumivel}</td>
                 <td>R$ {item.valor}</td>
                 </tr>

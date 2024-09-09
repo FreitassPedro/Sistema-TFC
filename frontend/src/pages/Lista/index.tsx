@@ -5,6 +5,9 @@ import NavBar from "components/NavBar"; // Importe seu componente NavBar
 import SearchBar from "components/SearchBar";
 import DataTable from "components/DataTable";
 
+import "./styles.css";
+import VendaForm from "components/VendaForm";
+
 interface ItemData {
   id: number;
   nome: string;
@@ -35,6 +38,7 @@ const Lista: React.FC = () => {
     <>
       <NavBar />
 
+      <VendaForm />
       <div className="py-3">
         <h2>Todas Vendas</h2>
         <SearchBar onSearch={handleSearch} /> 
