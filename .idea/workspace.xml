@@ -5,13 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7aedde2a-5ce8-493a-8de2-d3214122de96" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/pedro/tfc/controller/CompraController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/pedro/tfc/controller/CompraController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/DataTable/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/DataTable/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/DataTable/styles.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/SearchBar/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/SearchBar/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/Lista/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/Lista/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/Lista/style.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/VendaForm/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/VendaForm/index.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
