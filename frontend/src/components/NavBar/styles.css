@@ -1,13 +1,86 @@
-.texttfc {
-    font-size: 1em;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: bold;
-    color: #38013a;
+@keyframes flash {
+  0%, 100% {
+    background-color: #000000; /* Preto */
   }
+  50% {
+    background-color: #d45907; /* Laranja */
+
+  }
+}
+
+@keyframes movePumpkin {
+  0% {
+    transform: translateX(100%);
+  }
+  50% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(-13%);
+  }
+}
+
+.navbar-halloween {
+  position: relative;
+  overflow: hidden;
+  animation: flash 2.5s infinite;
+}
+
+.pumpkin-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 300%; /* Aumenta a largura para mais abóboras */
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  animation: movePumpkin 30s linear infinite;
+}
+
+.pumpkin-background img {
+  width: 50px; /* Ajuste o tamanho conforme necessário */
+  height: auto;
+  opacity: 0.5; /* Torna as abóboras semi-transparentes */
+  animation: rotatePumpkin 5s linear infinite;
+}
+
+@keyframes rotatePumpkin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.d-flex {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem 1rem 1rem 1rem;
+  margin-bottom: 1rem;
+  background-color: #000000; /* Preto */
+  border-bottom: 1px solid #e5e5e5;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+}
+
+.container {
+  max-width: 1200px;
+  padding: 2px 5px;
+  margin: 0 auto;
+}
+
+.texttfc {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #753306; /* Laranja para o tema de Halloween */
+}
 
 .texttfc img {
-    max-width: 5%;
-    height: auto;
+  margin: 0 0.5rem;
+  width: 50px; /* Ajuste o tamanho conforme necessário */
+  height: auto;
 }

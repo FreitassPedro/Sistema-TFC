@@ -13,24 +13,26 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
   };
 
   return (
+    
     <nav className="navbar navbar-light bg-light">
       <form className="form-inline">
         <div className="input-group">
-          <div className="input-group-prepend">
+          <div className="input-group">
             <span className="input-group-text">Nome</span>
-          </div>
-          <input 
-            className="form-control" 
+          </div >
+          <input
+            className="form" 
             type="text"
             placeholder="Buscar..."
             value={searchTerm}
 
             onChange={handleSearchChange}
           />
-          
         </div>
       </form>
     </nav>
+
+    
   );
 };
 
