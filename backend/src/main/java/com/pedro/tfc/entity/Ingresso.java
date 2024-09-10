@@ -1,5 +1,6 @@
 package com.pedro.tfc.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
@@ -23,8 +24,8 @@ public class Ingresso {
     private int coposDisponiveis = 3;
 
     @ManyToOne
-    @JsonIgnore
     @JoinColumn(name = "transacao_id") // Mapeia o relacionamento inverso ManyToOne com Compra
+    @JsonBackReference // Evita loop infinito
     private Transacao transacao;
 
     @OneToOne

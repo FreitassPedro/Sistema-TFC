@@ -1,6 +1,7 @@
 package com.pedro.tfc.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -21,6 +22,7 @@ public class Transacao {
     private Integer valor;
 
     @OneToMany(mappedBy = "transacao")
+    @JsonManagedReference
     private List<Ingresso> ingresso;
 
     @Column(name = "quantia_ingressos")
@@ -33,7 +35,7 @@ public class Transacao {
     @Column(name = "instagram_comprovante")
     private String instagramComprovante;
 
-    public void addTicket(Ingresso ingresso) {
+    public void adicionarIngresso(Ingresso ingresso) {
         if (this.ingresso == null) {
             this.ingresso = new ArrayList<>();
         }

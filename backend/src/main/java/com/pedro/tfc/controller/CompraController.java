@@ -11,9 +11,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,6 +19,7 @@ import java.util.List;
 @Slf4j
 @RestController
 @RequestMapping("/api/comprar")
+@CrossOrigin(origins = "*")
 public class CompraController {
 
     @Autowired
@@ -28,17 +27,18 @@ public class CompraController {
     @Autowired
     private IngressoService ingressoService;
 
-    @GetMapping
-    public ResponseEntity<Transacao> gerarPedido() {
+    @PostMapping
+    public ResponseEntity<Transacao> gerarPedido(@RequestBody PedidoDTO pedidoDTO) {
         log.info("Processando Pedido...");
 
-        PedidoDTO pedidoDTO = gerarPedidoTeste();
+        //PedidoDTO pedidoDTO = gerarPedidoTeste();
+        log.info("Pedido recebido: " + pedidoDTO);
         if (pedidoDTO.valorPago() % pedidoDTO.valorIngresso() != 0) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         }
 
-        Transacao transacao = compraService.criarTransacao(pedidoDTO);
 
+        Transacao transacao = compraService.criarTransacao(pedidoDTO);
 
         List<Ingresso> ingressosGerados = ingressoService.gerarIngressos(pedidoDTO.valorPago(), pedidoDTO.valorIngresso());
         ingressoService.associarIngressoATransacao(ingressosGerados, transacao);

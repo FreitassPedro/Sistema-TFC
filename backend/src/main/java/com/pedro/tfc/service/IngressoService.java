@@ -16,7 +16,6 @@ public class IngressoService {
     @Autowired
     private IngressoRepository ingressoRepository;
 
-
     public List<Ingresso> gerarIngressos(int valorPago, int valorIngresso) {
         if (valorPago < valorIngresso) {
             throw new IllegalArgumentException("Valor pago é menor que o valor do ingresso");

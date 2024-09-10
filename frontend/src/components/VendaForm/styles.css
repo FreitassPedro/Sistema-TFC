@@ -79,7 +79,10 @@
     margin-right: 0.35rem;
     margin: 0.5rem 0;
 }
-
+.input-box label {
+    margin-right: 1rem;
+    display: block;
+}
 .input-box input {
     align-items: center;
     padding: 0.2rem 1.2rem;

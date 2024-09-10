@@ -1,8 +1,9 @@
 import React from "react";
-
+import axios from "axios";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import "./styles.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { BASE_URL } from "utils/requests";
 
 const VendaForm: React.FC = () => {
   // Crie um formulário para adicionar uma nova venda
@@ -24,11 +25,44 @@ const VendaForm: React.FC = () => {
     setNomes(novosNomes);
   };
 
+  const handleSubmit = async (event: React.FormEvent) => {
+      event.preventDefault();
+
+      const formData = new FormData(event.currentTarget as HTMLFormElement);
+
+      const instagram = formData.get("instagram") as string;
+      const valorIngresso = parseFloat(formData.get("valorIngresso") as string);
+      const valorPago = parseFloat(formData.get("valorPago") as string); 
+      const nomes = formData.getAll("nome") as string[];
+  
+      // Cria objeto para enviar ao backend
+      const dadosParaEnviar = {
+        instagramComprovante: instagram,
+        valorIngresso: valorIngresso,
+        valorPago: valorPago,
+        nomes: nomes,
+      }
+
+      try {
+        console.log(dadosParaEnviar);
+        // Envia dados para o backend
+        const resposta = await axios.post(`${BASE_URL}/api/comprar`, dadosParaEnviar);
+        if (resposta.status === 201 ) {
+          alert("Ingresso registrada com sucesso!");
+        } else {
+          alert("Erro ao registrar ingresso. Confira os dados");
+        }
+      } catch (error) {
+        alert("Algo deu errado");
+      }
+      
+  
+    };
   return (
     <div className="base-card home">
       <div className="form-container">
         <div className="form base-card">
-          <form action="#">
+          <form action="#" onSubmit={handleSubmit}>
             <div className="form-header ">
               <div className="form-title">
                 <h1>Registrar Venda</h1>
@@ -52,12 +86,24 @@ const VendaForm: React.FC = () => {
 
             <div className="input-group">
               <div className="input-box">
-                <label htmlFor="valorIngresso">Preço</label>
+                <label htmlFor="valorIngresso">Preço R$</label>
                 <input
-                  id="preco"
-                  name=""
+                  id="valorIngresso"
+                  name="valorIngresso"
                   type="text"
                   placeholder="Digite valor do ingresso"
+                  required
+                />
+              </div>
+            </div>
+            <div className="input-group">
+              <div className="input-box">
+                <label htmlFor="valorPago">Valor total R$</label>
+                <input
+                  id="valorPago"
+                  name="valorPago"
+                  type="text"
+                  placeholder="Digite valor total pago"
                   required
                 />
               </div>
@@ -70,9 +116,10 @@ const VendaForm: React.FC = () => {
                   <input
                     id={`nome-${index}`}
                     type="text"
+                    name="nome"
                     value={nome}
                     placeholder="Insira o nome"
-                    onChange={(e) => handleNomeChange(index)(e)}
+                    onChange={e => handleNomeChange(index)(e)}
                     required
                   />
                   {index > 0 && (
