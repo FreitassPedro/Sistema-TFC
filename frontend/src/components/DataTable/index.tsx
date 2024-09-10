@@ -14,7 +14,7 @@ const DataTable: React.FC<DataTableProps> = ({data}) => {
   
   return (
     <div className="table-responsive">
-      <table className="table table-striped table-sm">
+      <table className="table">
         <thead>
           <tr>
             <th>ID</th>

@@ -39,7 +39,7 @@ const Lista: React.FC = () => {
       <NavBar />
 
       <VendaForm />
-      <div className="p-3">
+      <div className="vendas">
         <h2>Todas Vendas</h2>
         <SearchBar onSearch={handleSearch} /> 
         <DataTable data={filteredData} /> 

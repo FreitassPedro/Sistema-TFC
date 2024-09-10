@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 
+import "./styles.css";
+
+
 interface SearchBarProps {
   onSearch: (term: string) => void;
 }
@@ -13,26 +16,22 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
   };
 
   return (
-    
-    <nav className="navbar navbar-light bg-light">
-      <form className="form-inline">
-        <div className="input-group">
-          <div className="input-group">
-            <span className="input-group-text">Nome</span>
-          </div >
-          <input
-            className="form" 
-            type="text"
-            placeholder="Buscar..."
-            value={searchTerm}
-
-            onChange={handleSearchChange}
-          />
+    <nav className="search-box">
+      <form className="">
+        <div className="">
+          <div className="search-text">
+            <span className="">Nome</span>
+            <input
+              className=""
+              type="text"
+              placeholder="Buscar nome na lista..."
+              value={searchTerm}
+              onChange={handleSearchChange}
+            />
+          </div>
         </div>
       </form>
     </nav>
-
-    
   );
 };
 
