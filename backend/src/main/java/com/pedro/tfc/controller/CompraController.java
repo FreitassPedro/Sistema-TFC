@@ -1,7 +1,6 @@
 package com.pedro.tfc.controller;
 
 
-import com.pedro.tfc.entity.dao.ClienteListaDTO;
 import com.pedro.tfc.entity.dao.PedidoDTO;
 import com.pedro.tfc.entity.Ingresso;
 import com.pedro.tfc.entity.Transacao;
@@ -13,6 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 

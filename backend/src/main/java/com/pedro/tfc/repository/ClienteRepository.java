@@ -1,7 +1,8 @@
 package com.pedro.tfc.repository;
 
 import com.pedro.tfc.entity.Cliente;
-import com.pedro.tfc.entity.dao.ClienteListaDTO;
+import com.pedro.tfc.entity.dao.VendaAdminDTO;
+import com.pedro.tfc.entity.dao.VendaDTO;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
@@ -13,5 +14,5 @@ public interface ClienteRepository  extends JpaRepository<Cliente, Integer> {
             "FROM Ingresso ing " +
             "INNER JOIN Cliente c ON c.id = ing.cliente.id " +
             "ORDER BY ing.id")
-    List<ClienteListaDTO> listarClientesComIngresso();
+    List<VendaDTO> listarClientesComIngresso();
 }

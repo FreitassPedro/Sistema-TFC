@@ -1,6 +1,6 @@
 package com.pedro.tfc.entity.dao;
 
-public interface ClienteListaDTO {
+public interface VendaDTO {
 
     Integer getId();
     String getNome();

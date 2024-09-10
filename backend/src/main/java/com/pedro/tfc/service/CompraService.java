@@ -1,6 +1,7 @@
 package com.pedro.tfc.service;
 
-import com.pedro.tfc.entity.dao.ClienteListaDTO;
+import com.pedro.tfc.entity.dao.VendaAdminDTO;
+import com.pedro.tfc.entity.dao.VendaDTO;
 import com.pedro.tfc.entity.dao.PedidoDTO;
 import com.pedro.tfc.entity.Cliente;
 import com.pedro.tfc.entity.Ingresso;
@@ -62,7 +63,11 @@ public class CompraService {
         return transacao;
     }
 
-    public List<ClienteListaDTO> listarClientes() {
+    public List<VendaDTO> listarClientes() {
         return clienteRepository.listarClientesComIngresso();
+    }
+
+    public List<VendaAdminDTO> listarVendasAdmin() {
+        return ingressoRepository.listarVendasAdmin();
     }
 }

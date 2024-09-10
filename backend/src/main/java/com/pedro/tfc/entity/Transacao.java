@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -29,8 +30,8 @@ public class Transacao {
     private int quantiaIngressos;
 
 
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private LocalDateTime dataTransacao = LocalDateTime.now();
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    private LocalDate dataTransacao = LocalDateTime.now().toLocalDate();
 
     @Column(name = "instagram_comprovante")
     private String instagramComprovante;
