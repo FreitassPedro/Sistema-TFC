@@ -1,10 +1,5 @@
-
-interface IngressoData {
-    id: number;
-    nome: string;
-    codigoConsumivel: string;
-    valor: number;
-}
+import React from 'react';
+import { IngressoData } from './types';
 
 interface DataTableProps {
     data: IngressoData[];

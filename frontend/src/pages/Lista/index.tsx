@@ -8,16 +8,11 @@ import DataTable from "components/DataTable";
 import "./styles.css";
 import VendaForm from "components/VendaForm";
 
-interface ItemData {
-  id: number;
-  nome: string;
-  codigoConsumivel: string;
-  valor: number;
-}
+import { IngressoData } from "components/DataTable/types";
 
 const Lista: React.FC = () => {
-  const [data, setData] = useState<ItemData[]>([]);
-  const [filteredData, setFilteredData] = useState<ItemData[]>([]);
+  const [data, setData] = useState<IngressoData[]>([]);
+  const [filteredData, setFilteredData] = useState<IngressoData[]>([]);
 
   useEffect(() => {
     axios.get(`${BASE_URL}/api/dashboard/listar`).then((response) => {
