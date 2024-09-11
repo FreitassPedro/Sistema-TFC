@@ -15,15 +15,20 @@ const Lista: React.FC = () => {
   const [filteredData, setFilteredData] = useState<IngressoData[]>([]);
 
   useEffect(() => {
-    axios.get(`${BASE_URL}/api/dashboard/listar`).then((response) => {
-      setData(response.data);
-      setFilteredData(response.data); // Inicialmente, mostra todos os dados
-      console.log(response.data);
-    });
+    axios
+      .get(`${BASE_URL}/api/dashboard/listar`)
+      .then((response) => {
+        setData(response.data);
+        setFilteredData(response.data); // Inicialmente, mostra todos os dados
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }, []);
 
   const handleSearch = (searchTerm: string) => {
-    const filtered = data.filter(item =>
+    const filtered = data.filter((item) =>
       item.nome.toLowerCase().includes(searchTerm.toLowerCase())
     );
     setFilteredData(filtered);
@@ -36,8 +41,8 @@ const Lista: React.FC = () => {
       <VendaForm />
       <div className="vendas">
         <h2>Todas Vendas</h2>
-        <SearchBar onSearch={handleSearch} /> 
-        <DataTable data={filteredData} /> 
+        <SearchBar onSearch={handleSearch} />
+        <DataTable data={filteredData} />
       </div>
     </>
   );

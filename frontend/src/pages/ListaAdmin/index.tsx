@@ -13,11 +13,16 @@ const ListaAdmin: React.FC = () => {
   const [filteredData, setFilteredData] = useState<IngressoDataDetalhado[]>([]);
 
   useEffect(() => {
-    axios.get(`${BASE_URL}/api/dashboard/listar/admin`).then((response) => {
-      setData(response.data);
-      setFilteredData(response.data);
-      console.log(response.data);
-    });
+    axios
+      .get(`${BASE_URL}/api/dashboard/listar/admin`)
+      .then((response) => {
+        setData(response.data);
+        setFilteredData(response.data);
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }, []);
 
   const handleSearch = (searchTerm: string) => {
