@@ -25,7 +25,7 @@ public class DashboardController {
 
     @GetMapping("/listar")
     public ResponseEntity<List<VendaDTO>> listarClientes() {
-        List<VendaDTO> clientes = compraService.listarClientes();
+        List<VendaDTO> clientes = compraService.listarIngressos();
         return ResponseEntity.ok(clientes);
     }
 

@@ -12,7 +12,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,8 +36,8 @@ public class CompraController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         }
 
-
         Transacao transacao = compraService.criarTransacao(pedidoDTO);
+        transacao.setInstagramComprovante(compraService.tratarNomeComprovante(pedidoDTO.instagramComprovante()));
 
         List<Ingresso> ingressosGerados = ingressoService.gerarIngressos(pedidoDTO.valorPago(), pedidoDTO.valorIngresso());
         ingressoService.associarIngressoATransacao(ingressosGerados, transacao);

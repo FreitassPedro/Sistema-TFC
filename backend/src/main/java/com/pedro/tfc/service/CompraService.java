@@ -63,11 +63,19 @@ public class CompraService {
         return transacao;
     }
 
-    public List<VendaDTO> listarClientes() {
-        return clienteRepository.listarClientesComIngresso();
+    public List<VendaDTO> listarIngressos() {
+        return ingressoRepository.listarClientesComIngresso();
     }
 
     public List<VendaAdminDTO> listarVendasAdmin() {
         return ingressoRepository.listarVendasAdmin();
     }
+
+    public String tratarNomeComprovante(String s) {
+        if (s.charAt(0) != '@') {
+            s += "@" + s;
+        }
+        return s;
+    }
+
 }
