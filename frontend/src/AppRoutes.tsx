@@ -11,7 +11,7 @@ function AppRoutes() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/lista" element={<Lista />} />
-        <Route path="/lista/Admin" element={<ListaAdmin />} />
+        <Route path="/admin/lista" element={<ListaAdmin />} />
         {/* Add more routes as needed */}
       </Routes>
     </BrowserRouter>

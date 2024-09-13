@@ -22,7 +22,7 @@ public class Transacao {
     @Column(name = "valor", nullable = false)
     private Integer valor;
 
-    @OneToMany(mappedBy = "transacao")
+    @OneToMany(mappedBy = "transacao", cascade = CascadeType.ALL)
     @JsonManagedReference
     private List<Ingresso> ingresso;
 
@@ -30,7 +30,7 @@ public class Transacao {
     private int quantiaIngressos;
 
 
-    @JsonFormat(pattern = "yyyy-MM-dd")
+    @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDate dataTransacao = LocalDateTime.now().toLocalDate();
 
     @Column(name = "instagram_comprovante")

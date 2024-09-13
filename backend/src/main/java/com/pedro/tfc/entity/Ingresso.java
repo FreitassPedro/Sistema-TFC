@@ -23,12 +23,12 @@ public class Ingresso {
     @Column(name = "copos_disponiveis")
     private int coposDisponiveis = 3;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "transacao_id") // Mapeia o relacionamento inverso ManyToOne com Compra
     @JsonBackReference // Evita loop infinito
     private Transacao transacao;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "cliente_id")
     private Cliente cliente;
 

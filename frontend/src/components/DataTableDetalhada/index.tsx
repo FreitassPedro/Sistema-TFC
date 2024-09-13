@@ -13,10 +13,11 @@ const DataTableDetalhada: React.FC<DataTableProps> = ({ data }) => {
         <thead>
           <tr>
             <th>ID</th>
-            <th>Nome</th>
+            <th>Nome registrado</th>
             <th>Código Ingresso</th>
             <th>Valor</th>
             <th>@ Comprovante</th>
+            <th>Transação ID</th>
             <th>Data (mes/dia)</th>
           </tr>
         </thead>
@@ -28,6 +29,7 @@ const DataTableDetalhada: React.FC<DataTableProps> = ({ data }) => {
               <td>{item.codigoConsumivel}</td>
               <td>R$ {item.valor}</td>
               <td>{item.comprovante}</td>
+              <td>{item.transacaoID}</td>
               <td>{new Date(item.data).toISOString().slice(0, 10)}</td>
             </tr>
           ))}

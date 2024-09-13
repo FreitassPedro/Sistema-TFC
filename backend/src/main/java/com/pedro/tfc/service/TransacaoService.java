@@ -1,8 +1,6 @@
 package com.pedro.tfc.service;
 
-import com.pedro.tfc.entity.dao.VendaAdminDTO;
-import com.pedro.tfc.entity.dao.VendaDTO;
-import com.pedro.tfc.entity.dao.PedidoDTO;
+import com.pedro.tfc.entity.dao.*;
 import com.pedro.tfc.entity.Cliente;
 import com.pedro.tfc.entity.Ingresso;
 import com.pedro.tfc.entity.Transacao;
@@ -14,11 +12,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 @Slf4j
-public class CompraService {
+public class TransacaoService {
 
     @Autowired
     private ClienteRepository clienteRepository;
@@ -78,4 +80,27 @@ public class CompraService {
         return s;
     }
 
+    public void deletarTransacao(int id) {
+        transacaoRepository.deleteById(id);
+    }
+
+    public Map<String, DadosDiaDTO> contarVendasPorDia() {
+
+        List<VendaSuccessByDay> vendaSuccessByDay = transacaoRepository.contarVendasPorDia();
+        Map<String, DadosDiaDTO> mapDadosPorDia = new HashMap<>();
+
+        for (VendaSuccessByDay dia : vendaSuccessByDay) {
+            DadosDiaDTO dadosDiaDTO = new DadosDiaDTO(dia.getValorTotal(), dia.getQuantidadeVendas());
+
+            String dataAjustada = converterLocalDateToString(dia.getData());
+            mapDadosPorDia.put(dataAjustada, dadosDiaDTO);
+        }
+
+        return mapDadosPorDia;
+    }
+
+    private String converterLocalDateToString(LocalDate data) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM");
+        return data.format(formatter);
+    }
 }

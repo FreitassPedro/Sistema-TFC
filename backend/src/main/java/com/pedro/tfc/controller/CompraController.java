@@ -4,7 +4,7 @@ package com.pedro.tfc.controller;
 import com.pedro.tfc.entity.dao.PedidoDTO;
 import com.pedro.tfc.entity.Ingresso;
 import com.pedro.tfc.entity.Transacao;
-import com.pedro.tfc.service.CompraService;
+import com.pedro.tfc.service.TransacaoService;
 import com.pedro.tfc.service.IngressoService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +22,7 @@ import java.util.List;
 public class CompraController {
 
     @Autowired
-    private CompraService compraService;
+    private TransacaoService transacaoService;
     @Autowired
     private IngressoService ingressoService;
 
@@ -36,18 +36,18 @@ public class CompraController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         }
 
-        Transacao transacao = compraService.criarTransacao(pedidoDTO);
-        transacao.setInstagramComprovante(compraService.tratarNomeComprovante(pedidoDTO.instagramComprovante()));
+        Transacao transacao = transacaoService.criarTransacao(pedidoDTO);
+        transacao.setInstagramComprovante(transacaoService.tratarNomeComprovante(pedidoDTO.instagramComprovante()));
 
         List<Ingresso> ingressosGerados = ingressoService.gerarIngressos(pedidoDTO.valorPago(), pedidoDTO.valorIngresso());
         ingressoService.associarIngressoATransacao(ingressosGerados, transacao);
-        compraService.definirDonoIngresso(pedidoDTO.nomes(), ingressosGerados);
+        transacaoService.definirDonoIngresso(pedidoDTO.nomes(), ingressosGerados);
 
 
         transacao.setIngresso(ingressosGerados);
         transacao.setQuantiaIngressos(ingressosGerados.size());
 
-        compraService.salvarTransacao(transacao);
+        transacaoService.salvarTransacao(transacao);
 
         return ResponseEntity.status(HttpStatus.CREATED).body(transacao);
     }
@@ -70,4 +70,9 @@ public class CompraController {
     }
 
 
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deletarTransacao(@PathVariable int id) {
+        transacaoService.deletarTransacao(id);
+        return ResponseEntity.noContent().build();
+    }
 }

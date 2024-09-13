@@ -13,7 +13,7 @@ const DataTable: React.FC<DataTableProps> = ({data}) => {
         <thead>
           <tr>
             <th>ID</th>
-            <th>Nome</th>
+            <th>Nome registrado</th>
             <th>Código Ingresso</th>
             <th>Valor</th>
           </tr>

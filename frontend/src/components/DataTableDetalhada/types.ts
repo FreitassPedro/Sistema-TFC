@@ -5,6 +5,7 @@ export interface IngressoDataDetalhado {
     valor: number;
     comprovante: string;
     data: Date;
+    transacaoID: number
   }
   
 // Adicione esta linha para garantir que o arquivo seja tratado como um módulo

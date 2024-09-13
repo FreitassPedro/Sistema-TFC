@@ -10,7 +10,8 @@ import java.util.List;
 
 public interface IngressoRepository extends JpaRepository<Ingresso, Integer> {
 
-    @Query("SELECT i.id as id, t.dataTransacao as data, i.valor as valor, c.nome as nome, t.instagramComprovante as comprovante, i.codigoConsumivel as codigoConsumivel " +
+    @Query("SELECT i.id as id, t.dataTransacao as data, i.valor as valor, c.nome as nome, " +
+            "t.instagramComprovante as comprovante, i.codigoConsumivel as codigoConsumivel, t.id as transacaoID " +
             "FROM Ingresso i " +
             "INNER JOIN Transacao t ON i.transacao.id = t.id " +
             "INNER JOIN Cliente c ON i.cliente.id = c.id " +
