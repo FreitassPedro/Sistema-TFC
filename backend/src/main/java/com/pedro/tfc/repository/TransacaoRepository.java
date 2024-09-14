@@ -13,8 +13,6 @@ public interface TransacaoRepository extends JpaRepository<Transacao, Integer> {
 
     @Query("SELECT Date(dataTransacao) as data, SUM(valor) AS valorTotal, COUNT(*) AS quantidadeVendas " +
             "FROM Transacao " +
-            "WHERE MONTH(dataTransacao) = MONTH(CURRENT_DATE()) " +
-            "AND YEAR(dataTransacao) = YEAR(CURRENT_DATE()) " +
             "GROUP BY DATE(dataTransacao)")
     List<VendaSuccessByDay> contarVendasPorDia();
 }
