@@ -1,0 +1,1 @@
+INSERT INTO tb_transacao(id, data_transacao, valor, quantia_ingressos, instagram_comprovante) VALUES (1, '2024-09-10 10:30:00', 50.00, 2, '@teste');
