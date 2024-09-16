@@ -4,11 +4,13 @@ import { BASE_URL } from "utils/requests";
 import NavBar from "components/NavBar"; // Importe seu componente NavBar
 import SearchBar from "components/SearchBar";
 import DataTable from "components/DataTable";
+import VendasChart from "components/VendasChart";
 
 import "./styles.css";
 import VendaForm from "components/VendaForm";
 
 import { IngressoData } from "components/DataTable/types";
+
 
 const Lista: React.FC = () => {
   const [data, setData] = useState<IngressoData[]>([]);
@@ -37,9 +39,12 @@ const Lista: React.FC = () => {
   return (
     <>
       <NavBar />
-
-      <VendaForm />
-      <div className="vendas">
+      <div className="dashboard-vendas">
+        <h1>Dashboard Vendas</h1>
+        <VendasChart />
+        <VendaForm />
+      </div>
+      <div className="table-vendas">
         <h2>Todas Vendas</h2>
         <SearchBar onSearch={handleSearch} />
         <DataTable data={filteredData} />
