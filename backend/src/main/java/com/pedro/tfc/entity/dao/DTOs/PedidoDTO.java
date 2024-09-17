@@ -1,4 +1,4 @@
-package com.pedro.tfc.entity.dao;
+package com.pedro.tfc.entity.dao.DTOs;
 
 import java.util.List;
 

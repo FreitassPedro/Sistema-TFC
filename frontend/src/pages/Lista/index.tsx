@@ -41,7 +41,7 @@ const Lista: React.FC = () => {
       <NavBar />
       <div className="dashboard-vendas">
         <h1>Dashboard Vendas</h1>
-        <VendasChart />
+
         <VendaForm />
       </div>
       <div className="table-vendas">

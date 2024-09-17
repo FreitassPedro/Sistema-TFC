@@ -1,7 +1,7 @@
 package com.pedro.tfc.controller;
 
 
-import com.pedro.tfc.entity.dao.PedidoDTO;
+import com.pedro.tfc.entity.dao.DTOs.PedidoDTO;
 import com.pedro.tfc.entity.Ingresso;
 import com.pedro.tfc.entity.Transacao;
 import com.pedro.tfc.service.TransacaoService;

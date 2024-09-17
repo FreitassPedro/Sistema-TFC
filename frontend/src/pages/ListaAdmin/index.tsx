@@ -7,6 +7,7 @@ import { BASE_URL } from "utils/requests";
 import { IngressoDataDetalhado } from "components/DataTableDetalhada/types";
 
 import "./styles.css";
+import VendasChart from "components/VendasChart";
 
 const ListaAdmin: React.FC = () => {
   const [data, setData] = useState<IngressoDataDetalhado[]>([]);
@@ -35,6 +36,11 @@ const ListaAdmin: React.FC = () => {
   return (
     <>
       <NavBar />
+      <div className="base-card home">
+        <div className="">
+          <VendasChart />
+        </div>
+      </div>
       <h1>Lista Admin</h1>
       <div className="vendas">
         <SearchBar onSearch={handleSearch} />
