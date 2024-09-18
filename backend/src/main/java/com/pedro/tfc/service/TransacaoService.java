@@ -14,8 +14,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.SequencedCollection;
+
 
 @Service
 @Slf4j
@@ -83,20 +88,42 @@ public class TransacaoService {
         transacaoRepository.deleteById(id);
     }
 
+
     public List<VendaSuccessByDayDTO> contarVendasPorDia() {
 
-        List<VendaSuccessByDay> vendaSuccessByDay = transacaoRepository.contarVendasPorDia();
+        List<VendaSuccessByDay> vendaSuccessByDayList = transacaoRepository.contarVendasPorDia();
+        LocalDate dataFinal = vendaSuccessByDayList.getLast().getDia();
+        LocalDate dataInicial = vendaSuccessByDayList.getFirst().getDia();
 
-        List<VendaSuccessByDayDTO> vendaSuccessByDayDTOList = new ArrayList<>();
+        List<VendaSuccessByDayDTO> listaDTOs = new ArrayList<>();
 
-        for (VendaSuccessByDay venda : vendaSuccessByDay) {
+        int index = 0;
+        LocalDate diaIterado = dataInicial;
+        while (diaIterado.isBefore(dataFinal.plusDays(1)) && index < vendaSuccessByDayList.size()) {
 
+            String diaIteradoString = diaIterado.format(DateTimeFormatter.ofPattern("dd/MM"));
+            VendaSuccessByDay diaVendaMaisProxima = vendaSuccessByDayList.get(index);
 
-            VendaSuccessByDayDTO vendaSuccessByDayDTO = new VendaSuccessByDayDTO(venda.getDiaFormatado(), venda.getValorTotal(), venda.getQuantidadeVendas());
-            vendaSuccessByDayDTOList.add(vendaSuccessByDayDTO);
+            if (diaIteradoString.equals(diaVendaMaisProxima.getDia().format(DateTimeFormatter.ofPattern("dd/MM")))) {
+                VendaSuccessByDayDTO vendaDTO = new VendaSuccessByDayDTO(diaVendaMaisProxima);
+                listaDTOs.add(vendaDTO);
+                index++;
+            } else {
+                VendaSuccessByDayDTO vendaSuccessByDayDTO = new VendaSuccessByDayDTO(diaIteradoString, 0, 0);
+                listaDTOs.add(vendaSuccessByDayDTO);
+            }
+
+            diaIterado = diaIterado.plusDays(1);
+
         }
 
-        return vendaSuccessByDayDTOList;
+        return listaDTOs;
     }
+
+
+
+
+
+
 
 }

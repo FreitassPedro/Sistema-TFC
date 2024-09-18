@@ -1,8 +1,7 @@
-import ApexCharts, { ApexOptions } from "apexcharts";
+import { ApexOptions } from "apexcharts";
 
 import Chart from "react-apexcharts";
 import { useEffect, useState } from "react";
-import ReactApexChart from "react-apexcharts";
 import axios from "axios";
 import { SuccessSalesByDay } from "types/SuccessSalesByDay";
 

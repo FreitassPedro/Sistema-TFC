@@ -10,8 +10,4 @@ public interface VendaSuccessByDay {
     Integer getValorTotal();
     Integer getQuantidadeVendas();
 
-    default String getDiaFormatado() {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM");
-        return getDia().format(formatter);
-    }
 }
