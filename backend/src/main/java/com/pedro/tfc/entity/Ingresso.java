@@ -32,4 +32,5 @@ public class Ingresso {
     @JoinColumn(name = "cliente_id")
     private Cliente cliente;
 
+
 }

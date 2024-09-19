@@ -2,7 +2,7 @@ package com.pedro.tfc.service;
 
 import com.pedro.tfc.entity.Ingresso;
 import com.pedro.tfc.entity.Transacao;
-import com.pedro.tfc.entity.dao.DTOs.IngressoImpressoDTO;
+import com.pedro.tfc.entity.dao.IngressoImpressoDTO;
 import com.pedro.tfc.repository.IngressoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -32,11 +32,11 @@ public class IngressoService {
     }
 
     private String gerarCodigoConsumivel() {
-        String caracteres = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+        String caracteres = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
         Random random = new Random();
 
         StringBuilder codigo = new StringBuilder();
-        for (int i = 0; i < 6; i++) {
+        for (int i = 0; i < 8; i++) {
             codigo.append(caracteres.charAt(random.nextInt(caracteres.length())));
         }
         return codigo.toString();
@@ -65,5 +65,9 @@ public class IngressoService {
     public List<IngressoImpressoDTO> encontrarIngressosPorTransacaoID(int transacaoId) {
 
         return ingressoRepository.listarIngressosImpressos(transacaoId);
+    }
+
+    public IngressoImpressoDTO encontrarIngressoPorCodigoConsumivel(String codigoConsumivel) {
+        return ingressoRepository.findByCodigoConsumivel(codigoConsumivel);
     }
 }
