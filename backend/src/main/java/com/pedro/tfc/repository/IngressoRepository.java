@@ -1,6 +1,7 @@
 package com.pedro.tfc.repository;
 
 import com.pedro.tfc.entity.Ingresso;
+import com.pedro.tfc.entity.dao.DTOs.IngressoImpressoDTO;
 import com.pedro.tfc.entity.dao.VendaAdminDTO;
 import com.pedro.tfc.entity.dao.VendaDTO;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -23,4 +24,10 @@ public interface IngressoRepository extends JpaRepository<Ingresso, Integer> {
             "INNER JOIN Cliente c ON c.id = ing.cliente.id " +
             "ORDER BY ing.id")
     List<VendaDTO> listarClientesComIngresso();
+
+    @Query("SELECT ing.codigoConsumivel as codigoConsumivel, ing.coposDisponiveis as coposDisponiveis " +
+            "FROM Ingresso ing " +
+            "INNER JOIN Transacao t ON ing.transacao.id = t.id " +
+            "WHERE ing.transacao.id = :transacaoID")
+    List<IngressoImpressoDTO> listarIngressosImpressos(int transacaoID);
 }

@@ -14,5 +14,6 @@ INSERT INTO tb_cliente(id, nome) VALUES (3, 'Pedro');
 INSERT INTO tb_cliente(id, nome) VALUES (4, 'Ana');
 
 INSERT INTO tb_ingresso(id, transacao_id, cliente_id, codigo_consumivel, valor, copos_disponiveis) VALUES (1, 1, 1, '123456', 50.00, 2);
-INSERT INTO tb_ingresso(id, transacao_id, cliente_id, codigo_consumivel, valor, copos_disponiveis) VALUES (2, 2, 2, '2ECFEE', 50.00, 2);
-INSERT INTO tb_ingresso(id, transacao_id, cliente_id, codigo_consumivel, valor, copos_disponiveis) VALUES (3, 3, 3, '321DEE', 50.00, 2);
+INSERT INTO tb_ingresso(id, transacao_id, cliente_id, codigo_consumivel, valor, copos_disponiveis) VALUES (2, 1, 2, '321DMA', 50.00, 3);
+INSERT INTO tb_ingresso(id, transacao_id, cliente_id, codigo_consumivel, valor, copos_disponiveis) VALUES (3, 2, 3, '2ECFEE', 50.00, 2);
+INSERT INTO tb_ingresso(id, transacao_id, cliente_id, codigo_consumivel, valor, copos_disponiveis) VALUES (4, 3, 4, '321DEE', 50.00, 2);

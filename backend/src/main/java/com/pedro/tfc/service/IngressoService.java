@@ -2,6 +2,7 @@ package com.pedro.tfc.service;
 
 import com.pedro.tfc.entity.Ingresso;
 import com.pedro.tfc.entity.Transacao;
+import com.pedro.tfc.entity.dao.DTOs.IngressoImpressoDTO;
 import com.pedro.tfc.repository.IngressoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -59,5 +60,10 @@ public class IngressoService {
             ingresso.setTransacao(transacao);
         }
         ingressoRepository.saveAll(ingressosGerados);
+    }
+
+    public List<IngressoImpressoDTO> encontrarIngressosPorTransacaoID(int transacaoId) {
+
+        return ingressoRepository.listarIngressosImpressos(transacaoId);
     }
 }

@@ -67,9 +67,7 @@ const VendaForm: React.FC = () => {
               <div className="form-title">
                 <h1>Registrar Venda</h1>
               </div>
-              <div className="send-button">
-                <button type="submit">Inserir</button>
-              </div>
+              
             </div>
             <div className="input-group">
               <div className="input-box">
@@ -108,6 +106,7 @@ const VendaForm: React.FC = () => {
                 />
               </div>
             </div>
+            
 
             <div className="input-group">
               {nomes.map((nome, index) => (
@@ -132,8 +131,11 @@ const VendaForm: React.FC = () => {
               ))}
 
               <button type="button" onClick={adicionarNome} className="button-add-name">
-                Adicionar nome
+                Inserir outro nome
               </button>
+              <div className="button-add">
+                <button type="submit" className="button-add-name">Confirmar Venda</button>
+              </div>
             </div>
           </form>
         </div>

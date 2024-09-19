@@ -1,6 +1,7 @@
 package com.pedro.tfc.controller;
 
 
+import com.pedro.tfc.entity.dao.DTOs.IngressoImpressoDTO;
 import com.pedro.tfc.entity.dao.DTOs.PedidoDTO;
 import com.pedro.tfc.entity.Ingresso;
 import com.pedro.tfc.entity.Transacao;
@@ -68,6 +69,8 @@ public class CompraController {
 
         return pedidoDTO;
     }
+
+
 
 
     @DeleteMapping("/{id}")
