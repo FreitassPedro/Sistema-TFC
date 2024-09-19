@@ -4,7 +4,6 @@ import { BASE_URL } from "utils/requests";
 import NavBar from "components/NavBar"; // Importe seu componente NavBar
 import SearchBar from "components/SearchBar";
 import DataTable from "components/DataTable";
-import VendasChart from "components/VendasChart";
 
 import "./styles.css";
 import VendaForm from "components/VendaForm";

@@ -36,20 +36,45 @@ const VendasChart = () => {
 
   const options: ApexOptions = {
     chart: {
+      type: 'area',
+      stacked: false,
       height: 350,
-      type: "line",
+      zoom: {
+        type: "x",
+        enabled: true,
+      },
+      toolbar: {
+        autoSelected: "zoom",
+        show: true,
+      },
     },
+    colors: ["#200207"],
+    stroke: {
+      curve: 'smooth',
+    },
+    markers: {
+      size: 0,
+    },
+    title: {
+      text: "Vendas Por dia"
+    },
+    
     legend: {
-      position: "top" as "top", // Certifique-se de que este valor é um dos valores esperados
-      horizontalAlign: "right" as "right", // Ajuste conforme necessário
-      floating: true,
       offsetY: -25,
       offsetX: -5,
       show: true,
     },
     labels: chartData.labels,
     xaxis: {
+      title: {
+        text: "Dias",
+      },
       categories: chartData.labels,
+    },
+    yaxis: {
+      title: {
+        text: "Quantidade",
+      },
     },
   };
 
