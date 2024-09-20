@@ -4,4 +4,5 @@ public interface IngressoImpressoDTO{
     String getCodigoConsumivel();
     int getCoposDisponiveis();
     int getId();
+    String getNome();
 }

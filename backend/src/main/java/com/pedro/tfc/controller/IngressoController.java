@@ -29,6 +29,8 @@ public class IngressoController {
     public ResponseEntity<IngressoImpressoDTO> encontrarIngressoPorCodigoConsumivel(@PathVariable("codigoConsumivel") String codigoConsumivel) {
         IngressoImpressoDTO ingresso = ingressoService.encontrarIngressoPorCodigoConsumivel(codigoConsumivel);
 
-        return ResponseEntity.ok(ingresso);
+        if (ingresso == null) return ResponseEntity.notFound().build();
+
+        return ResponseEntity.ok().body(ingresso);
     }
 }

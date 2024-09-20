@@ -1,0 +1,81 @@
+.ingresso-impresso {
+
+  margin: 0;
+  background-color: rgb(22, 20, 24);
+  color: #eee;
+  min-height: 100vh;
+  
+}
+
+
+.nft {
+  border: 1px solid #ffffff22;
+  max-width: 300px;
+  margin: 0 auto;
+  background-color: #282c34;
+  background: linear-gradient(
+    0deg,
+    #282c34 0%,
+    rgba(17, 0, 32, 0.5) 100%
+  );
+  box-shadow: 0 7px 20px 5px #000;
+  border-radius: .7rem;
+  overflow: hidden;
+  user-select: none;
+
+  .main {
+    margin-top: 1rem;
+    display: flex;
+    margin: 0 auto;
+    flex-direction: column;
+    width: 90%;
+    padding: 1rem;
+    justify-content: center;
+    align-items: center;
+    display: flex; /* Adicionado */
+    flex-direction: column; /* Adicionado */
+    justify-content: center; /* Adicionado */
+  }
+  
+  hr {
+    width: 100%;
+    border: none;
+    height: 1px;
+    border-bottom: 1.5px solid #ffffff22;
+    margin-top: 0;
+  }
+  .box-image {
+    border-radius: 0.5rem;
+    max-width: 100%;
+    object-fit: cover;
+    height: 250px;
+  }
+
+  .code-text {
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-align: center;
+    margin: 1rem 0;
+  }
+
+  .card-nome {
+    font-style: italic;
+    font-size: 1.2rem;
+    margin: 0.5rem 1rem;
+    color: #8d8d8d;
+    font-family: Courier;
+    text-align: center;
+    
+  }
+  
+  .card-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+    .date {
+      display: flex;
+      margin-right: .2rem;
+    }
+  }
+}

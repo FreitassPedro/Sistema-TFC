@@ -31,5 +31,9 @@ public interface IngressoRepository extends JpaRepository<Ingresso, Integer> {
             "WHERE ing.transacao.id = :transacaoID")
     List<IngressoImpressoDTO> listarIngressosImpressos(int transacaoID);
 
+    @Query("SELECT ing.id as id, ing.codigoConsumivel as codigoConsumivel, ing.coposDisponiveis as coposDisponiveis, c.nome as nome " +
+            "FROM Ingresso ing " +
+            "INNER JOIN Cliente c ON c.id = ing.cliente.id " +
+            "WHERE ing.codigoConsumivel = :codigoConsumivel")
     IngressoImpressoDTO findByCodigoConsumivel(String codigoConsumivel);
 }
