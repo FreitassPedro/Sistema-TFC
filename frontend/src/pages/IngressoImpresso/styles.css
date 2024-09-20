@@ -1,27 +1,32 @@
 .ingresso-impresso {
-
   margin: 0;
-  background-color: rgb(22, 20, 24);
+  background-color: #1b1322;
   color: #eee;
   min-height: 100vh;
-  
+  height: 100%;
+  position: relative;
+
 }
 
-
-.nft {
+.card-main {
   border: 1px solid #ffffff22;
-  max-width: 300px;
+  max-width: 320px;
   margin: 0 auto;
-  background-color: #282c34;
-  background: linear-gradient(
-    0deg,
-    #282c34 0%,
-    rgba(17, 0, 32, 0.5) 100%
-  );
+  background: linear-gradient(0deg, #26165f 0%, rgba(17, 0, 32, 0.5) 100%);
   box-shadow: 0 7px 20px 5px #000;
-  border-radius: .7rem;
+  border-radius: 0.7rem;
   overflow: hidden;
   user-select: none;
+  justify-content: center;
+  z-index: 1;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 50%;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, -50%);
 
   .main {
     margin-top: 1rem;
@@ -32,11 +37,11 @@
     padding: 1rem;
     justify-content: center;
     align-items: center;
-    display: flex; /* Adicionado */
-    flex-direction: column; /* Adicionado */
-    justify-content: center; /* Adicionado */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
   }
-  
+
   hr {
     width: 100%;
     border: none;
@@ -61,21 +66,42 @@
   .card-nome {
     font-style: italic;
     font-size: 1.2rem;
-    margin: 0.5rem 1rem;
+    margin: 0.5rem 0.5rem;
+    padding-bottom: 20px;
     color: #8d8d8d;
     font-family: Courier;
     text-align: center;
-    
   }
-  
+
   .card-info {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    
+
     .date {
       display: flex;
-      margin-right: .2rem;
+      margin-right: 0.2rem;
     }
+    span {
+      font-size: 1rem;
+      font-weight: bold;
+      color: #8d8d8d;
+      margin-right: 2px;
+    }
+  }
+}
+
+.bg-text{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  user-select: none;
+  font-size: 10rem;
+z-index: 0;
+color: rgb(255, 255, 255);
+  h1{
+    font-size: 20rem;
+    filter: opacity(0.05);
   }
 }
