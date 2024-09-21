@@ -1,121 +1,113 @@
-
-@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap'); 
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Inter', sans-serif;    
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Inter", sans-serif;
 }
 
-
 .form {
-    margin: 0 auto;
-    display: flex;
-    padding: 2rem;
-    align-items: center;
-    flex-direction: column;
-    background-color: #fff;
+  margin: 0 auto;
+  display: flex;
+  padding: 2rem;
+  align-items: center;
+  flex-direction: column;
+  background-color: #fff;
 }
 
 .form-container {
-    width: 100%;
-    max-width: 500px;
-    padding: 2rem;
-    border-radius: 10px;
+  width: 100%;
+  max-width: 500px;
+  padding: 2rem;
+  border-radius: 10px;
 }
 
-
 .form-header {
-    margin-bottom: 2rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
+  margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
 }
 
 .form-header h1 {
-    color: #300c85;
-    
+  color: #300c85;
 }
 
 .form-header h1::after {
-    content: '';
-    display: block;
-    width: 50%;
-    height: 2px;
-    background-color: #300c85;
-    margin-top: 0.3rem;
-}
-
-.send-button {
-    display: flex;
-    align-items: center;
-}
-
-.send-button button {
-    background-color: #3e033d;
-    color: #fff;
-    border: none;
-    padding: 0.5rem 1rem;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-.send-button button:hover {
-    background-color: #e7d1e7;
+  content: "";
+  display: block;
+  width: 50%;
+  height: 2px;
+  background-color: #3e033d;
+  margin-top: 0.3rem;
 }
 
 .input-group {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    margin-bottom: 1rem 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-bottom: 1rem 0;
 }
 
 .input-box {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-right: 0.35rem;
-    margin: 0.5rem 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-right: 0.35rem;
+  margin: 0.5rem 0;
 }
 .input-box label {
-    margin-right: 1rem;
-    display: block;
+  margin-right: 1rem;
+  display: block;
 }
 .input-box input {
-    align-items: center;
-    padding: 0.2rem 1.2rem;
-    border: none;
-    border-radius: 10px;
-    box-shadow: 1px 1px 6px #0000001c;
+  align-items: center;
+  padding: 0.2rem 1.2rem;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 1px 1px 6px #0000001c;
 }
 
 .input-box input:hover {
-    background-color: #eeeeee75;
-    outline: 1px solid #c9b5f7;
+  background-color: #eeeeee75;
+  outline: 1px solid #c9b5f7;
 }
 
 .input-box input:focus-visible {
-    outline: 1px solid #5b1ee7;
+  outline: 1px solid #5b1ee7;
 }
-
 
 .input-box button {
-    outline: none;
-    border: none; /* Remove a borda do botão */
-    background: none; /* Remove o fundo do botão */
-    cursor: pointer; /* Adiciona o cursor de ponteiro */
-    padding: 0; /* Remove o padding */
-    padding-left: 2rem; /* Adiciona margem esquerda para espaçamento */
-    
+  outline: none;
+  border: none; /* Remove a borda do botão */
+  background: none; /* Remove o fundo do botão */
+  cursor: pointer; /* Adiciona o cursor de ponteiro */
+  padding: 0; /* Remove o padding */
+  padding-left: 2rem; /* Adiciona margem esquerda para espaçamento */
 }
 
-.button-add-name {
-    background-color: #3e033d;
-    color: #fff;
+.button-form {
+  border: none;
+  display: flex;
+  cursor: pointer;
+  flex-direction: column; /* Alinha os botões em uma coluna */
+  gap: 0.5rem; /* Espaçamento entre os botões */
+
+  button {
+    height: 2rem;
     border: none;
-    padding: 0.5rem;
-    cursor: pointer;
+    background-color: #3e033d;
+    width: 100%;
+    font-size: 100%;
+    color: #fff;
+  }
+
+  .submit {
+
+    background-color: #26165f;
+    
+
+}
+ 
 }

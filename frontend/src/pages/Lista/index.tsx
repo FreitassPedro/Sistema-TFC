@@ -10,7 +10,6 @@ import VendaForm from "components/VendaForm";
 
 import { IngressoData } from "components/DataTable/types";
 
-
 const Lista: React.FC = () => {
   const [data, setData] = useState<IngressoData[]>([]);
   const [filteredData, setFilteredData] = useState<IngressoData[]>([]);
@@ -38,9 +37,8 @@ const Lista: React.FC = () => {
   return (
     <>
       <NavBar />
-      <div className="dashboard-vendas">
+      <div className="dashboard-vendas base-card home">
         <h1>Dashboard Vendas</h1>
-
         <VendaForm />
       </div>
       <div className="table-vendas">

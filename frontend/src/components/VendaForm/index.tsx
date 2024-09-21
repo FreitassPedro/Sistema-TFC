@@ -26,40 +26,41 @@ const VendaForm: React.FC = () => {
   };
 
   const handleSubmit = async (event: React.FormEvent) => {
-      event.preventDefault();
+    event.preventDefault();
 
-      const formData = new FormData(event.currentTarget as HTMLFormElement);
+    const formData = new FormData(event.currentTarget as HTMLFormElement);
 
-      const instagram = formData.get("instagram") as string;
-      const valorIngresso = parseFloat(formData.get("valorIngresso") as string);
-      const valorPago = parseFloat(formData.get("valorPago") as string); 
-      const nomes = formData.getAll("nome") as string[];
-  
-      // Cria objeto para enviar ao backend
-      const dadosParaEnviar = {
-        instagramComprovante: instagram,
-        valorIngresso: valorIngresso,
-        valorPago: valorPago,
-        nomes: nomes,
-      }
+    const instagram = formData.get("instagram") as string;
+    const valorIngresso = parseFloat(formData.get("valorIngresso") as string);
+    const valorPago = parseFloat(formData.get("valorPago") as string);
+    const nomes = formData.getAll("nome") as string[];
 
-      try {
-        console.log(dadosParaEnviar);
-        // Envia dados para o backend
-        const resposta = await axios.post(`${BASE_URL}/api/comprar`, dadosParaEnviar);
-        if (resposta.status === 201 ) {
-          alert("Ingresso registrada com sucesso!");
-        } else {
-          alert("Erro ao registrar ingresso. Confira os dados");
-        }
-      } catch (error) {
-        alert("Algo deu errado");
-      }
-      
-  
+    // Cria objeto para enviar ao backend
+    const dadosParaEnviar = {
+      instagramComprovante: instagram,
+      valorIngresso: valorIngresso,
+      valorPago: valorPago,
+      nomes: nomes,
     };
+
+    try {
+      console.log(dadosParaEnviar);
+      // Envia dados para o backend
+      const resposta = await axios.post(
+        `${BASE_URL}/api/comprar`,
+        dadosParaEnviar
+      );
+      if (resposta.status === 201) {
+        alert("Ingresso registrada com sucesso!");
+      } else {
+        alert("Erro ao registrar ingresso. Confira os dados");
+      }
+    } catch (error) {
+      alert("Algo deu errado");
+    }
+  };
   return (
-    <div className="base-card home">
+    <div className="">
       <div className="form-container">
         <div className="form base-card">
           <form action="#" onSubmit={handleSubmit}>
@@ -67,7 +68,6 @@ const VendaForm: React.FC = () => {
               <div className="form-title">
                 <h1>Registrar Venda</h1>
               </div>
-              
             </div>
             <div className="input-group">
               <div className="input-box">
@@ -106,7 +106,6 @@ const VendaForm: React.FC = () => {
                 />
               </div>
             </div>
-            
 
             <div className="input-group">
               {nomes.map((nome, index) => (
@@ -118,23 +117,28 @@ const VendaForm: React.FC = () => {
                     name="nome"
                     value={nome}
                     placeholder="Insira o nome"
-                    onChange={e => handleNomeChange(index)(e)}
+                    onChange={(e) => handleNomeChange(index)(e)}
                     required
                   />
                   {index > 0 && (
-                    
-                      <button type="button" onClick={() => removerNome(index)}>
-                        <FontAwesomeIcon icon={faTrash} />
-                      </button>
+                    <button type="button" onClick={() => removerNome(index)}>
+                      <FontAwesomeIcon icon={faTrash} />
+                    </button>
                   )}
                 </div>
               ))}
 
-              <button type="button" onClick={adicionarNome} className="button-add-name">
-                Inserir outro nome
-              </button>
-              <div className="button-add">
-                <button type="submit" className="button-add-name">Confirmar Venda</button>
+              <div className="button-form">
+                <button
+                  type="button"
+                  onClick={adicionarNome}
+                  className="addnome"
+                >
+                  Inserir outro nome
+                </button>
+                <button type="submit" className="submit">
+                  Confirmar Venda
+                </button>
               </div>
             </div>
           </form>
