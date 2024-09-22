@@ -3,10 +3,14 @@ package com.pedro.tfc.entity;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+
+import java.util.Random;
 
 @Entity
 @Data
+@AllArgsConstructor
 @Table(name = "tb_ingresso")
 public class Ingresso {
 
@@ -15,7 +19,7 @@ public class Ingresso {
     private int id;
 
     @Column(name = "codigo_consumivel", nullable = false)
-    private String codigoConsumivel;
+    private String codigoConsumivel = gerarCodigoConsumivel();
 
     @Column(name = "valor")
     private Integer valor;
@@ -32,5 +36,19 @@ public class Ingresso {
     @JoinColumn(name = "cliente_id")
     private Cliente cliente;
 
+    public Ingresso(int valor) {
+        this.valor = valor;
+    }
+
+    private String gerarCodigoConsumivel() {
+        String caracteres = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+        Random random = new Random();
+
+        StringBuilder codigo = new StringBuilder();
+        for (int i = 0; i < 8; i++) {
+            codigo.append(caracteres.charAt(random.nextInt(caracteres.length())));
+        }
+        return codigo.toString();
+    }
 
 }

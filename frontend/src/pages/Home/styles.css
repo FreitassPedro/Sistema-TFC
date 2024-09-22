@@ -145,7 +145,7 @@
 }
 
 .animated-text {
-  display: inline-block;
+  text-align: center;
   overflow: hidden;
   vertical-align: bottom;
   animation: fade-in-out 3s ease-in-out infinite;

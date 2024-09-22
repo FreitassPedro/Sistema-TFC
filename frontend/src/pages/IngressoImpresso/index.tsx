@@ -15,15 +15,17 @@ const IngressoImpresso = () => {
       .get(`${BASE_URL}/api/ingresso/code/${codigoConsumivel}`)
       .then((response) => {
         setIngresso(response.data);
+
         console.log(response.data);
       })
       .catch((error) => {
         if (error.response.status === 404) {
           alert("Ingresso não encontrado");
         }
+
         console.error("Erro ao buscar dados do ingresso:", error);
       });
-  }, []);
+  }, [codigoConsumivel]);
 
   const diasRestantes = () => {
     const dataEvento = new Date("2024-10-25T23:00:00.000Z");
@@ -48,21 +50,30 @@ const IngressoImpresso = () => {
     return `${diferencaEmDias} dias`;
   };
 
+  const handleGerarQRCode = () => {
+    if (ingresso) {
+      const consulta = `https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${ingresso?.codigoConsumivel}`;
+      return consulta;
+    }
+    return "";
+  };
+
   return (
     <>
       <div className="ingresso-impresso">
-        
         <div className="bg-text">
           <h1>TFC</h1>
         </div>
 
         <div className="card-main">
           <div className="main">
-            <img
-              className="box-image"
-              src="https://www.qrcode-monkey.com/img/default-preview-qr.svg"
-              alt="QR Code"
-            />
+            {ingresso && (
+              <img
+                src={handleGerarQRCode()}
+                className="box-image"
+                alt="QR Code"
+              />
+            )}
             <div className="code-text">
               <h2>
                 {ingresso
@@ -82,7 +93,17 @@ const IngressoImpresso = () => {
               </div>
             </div>
             <hr />
-            <span>Aproveite a festa!</span>
+
+            <span>
+              {ingresso ? (
+                "Aproveite a festa!"
+              ) : (
+                <>
+                  Seu código é inválido. <br /> Entre em contato em caso de
+                  dúvidas
+                </>
+              )}
+            </span>
           </div>
         </div>
       </div>

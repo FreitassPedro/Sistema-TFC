@@ -41,10 +41,8 @@ public class CompraController {
 
         List<Ingresso> ingressosGerados = ingressoService.gerarIngressos(pedidoDTO.valorPago(), pedidoDTO.valorIngresso());
         ingressoService.associarIngressoATransacao(ingressosGerados, transacao);
-        transacaoService.definirDonoIngresso(pedidoDTO.nomes(), ingressosGerados);
+        transacaoService.definirNomeNoIngresso(pedidoDTO.nomes(), ingressosGerados);
 
-
-        transacao.setIngresso(ingressosGerados);
         transacao.setQuantiaIngressos(ingressosGerados.size());
 
         transacaoService.salvarTransacao(transacao);

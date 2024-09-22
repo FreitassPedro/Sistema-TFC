@@ -1,5 +1,6 @@
 package com.pedro.tfc.controller;
 
+import com.pedro.tfc.entity.Ingresso;
 import com.pedro.tfc.entity.dao.IngressoImpressoDTO;
 import com.pedro.tfc.service.IngressoService;
 import lombok.extern.slf4j.Slf4j;
@@ -32,5 +33,11 @@ public class IngressoController {
         if (ingresso == null) return ResponseEntity.notFound().build();
 
         return ResponseEntity.ok().body(ingresso);
+    }
+
+    @GetMapping("/gerarTeste")
+    public ResponseEntity<Ingresso> gerarCodigoTeste() {
+        Ingresso imp = new Ingresso(50);
+        return ResponseEntity.ok(imp);
     }
 }

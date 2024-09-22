@@ -16,10 +16,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.SequencedCollection;
 
 
 @Service
@@ -36,11 +34,10 @@ public class TransacaoService {
     private TransacaoRepository transacaoRepository;
 
 
-    public void definirDonoIngresso(List<String> nomes, List<Ingresso> ingressosGerados) {
+    public void definirNomeNoIngresso(List<String> nomes, List<Ingresso> ingressosGerados) {
         if (nomes.size() != ingressosGerados.size() || nomes.isEmpty()) {
             throw new IllegalArgumentException("Quantidade de nomes diferente da quantidade de ingressos");
         }
-
 
         for (int i = 0; i < nomes.size(); i++) {
             Cliente cliente = new Cliente();

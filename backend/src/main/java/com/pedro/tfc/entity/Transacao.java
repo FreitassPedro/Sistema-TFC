@@ -29,17 +29,18 @@ public class Transacao {
     @Column(name = "quantia_ingressos")
     private int quantiaIngressos;
 
-
     @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDate dataTransacao = LocalDateTime.now().toLocalDate();
 
     @Column(name = "instagram_comprovante")
     private String instagramComprovante;
 
+    @Column(name = "is_valid")
+    private Boolean isValid = true;
+
     public void adicionarIngresso(Ingresso ingresso) {
-        if (this.ingresso == null) {
-            this.ingresso = new ArrayList<>();
-        }
+        if (this.ingresso == null) this.ingresso = new ArrayList<>();
+
         this.ingresso.add(ingresso);
     }
 }

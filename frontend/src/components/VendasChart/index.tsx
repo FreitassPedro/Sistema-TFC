@@ -4,6 +4,7 @@ import Chart from "react-apexcharts";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { SuccessSalesByDay } from "types/SuccessSalesByDay";
+import { BASE_URL } from "utils/requests";
 
 type ChartData = {
   labels: string[];
@@ -18,7 +19,7 @@ const VendasChart = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:8080/api/dashboard/admin/success-by-day")
+      .get(`${BASE_URL}/api/dashboard/admin/success-by-day`)
       .then((response) => {
         const data = response.data as SuccessSalesByDay[];
         console.log(data);

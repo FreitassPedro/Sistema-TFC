@@ -22,48 +22,33 @@ public class IngressoService {
             throw new IllegalArgumentException("Valor pago é menor que o valor do ingresso");
         }
 
-        int quantiaIngressos = 0;
-        while (valorIngresso <= valorPago) {
-            valorPago -= valorIngresso;
-            quantiaIngressos++;
-        }
+        int quantiaIngressos = valorIngresso / valorPago;
 
         return gerarListaIngressos(quantiaIngressos, valorIngresso);
     }
 
-    private String gerarCodigoConsumivel() {
-        String caracteres = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-        Random random = new Random();
 
-        StringBuilder codigo = new StringBuilder();
-        for (int i = 0; i < 8; i++) {
-            codigo.append(caracteres.charAt(random.nextInt(caracteres.length())));
-        }
-        return codigo.toString();
-
-    }
 
     private List<Ingresso> gerarListaIngressos(int quantiaIngressos, int valorIngresso) {
         List<Ingresso> ingressos = new ArrayList<>();
         for (int i = 0; i < quantiaIngressos; i++) {
-            Ingresso ingresso = new Ingresso();
-            ingresso.setValor(valorIngresso);
-            ingresso.setCodigoConsumivel(gerarCodigoConsumivel());
+            Ingresso ingresso = new Ingresso(valorIngresso);
             ingressos.add(ingresso);
-
         }
         return ingressos;
     }
 
     public void associarIngressoATransacao(List<Ingresso> ingressosGerados, Transacao transacao) {
+        ingressosGerados.forEach(ingresso -> ingresso.setTransacao(transacao));
+
         for (Ingresso ingresso : ingressosGerados) {
-            ingresso.setTransacao(transacao);
+            transacao.adicionarIngresso(ingresso);
         }
+
         ingressoRepository.saveAll(ingressosGerados);
     }
 
     public List<IngressoImpressoDTO> encontrarIngressosPorTransacaoID(int transacaoId) {
-
         return ingressoRepository.listarIngressosImpressos(transacaoId);
     }
 
