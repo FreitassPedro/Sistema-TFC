@@ -4,6 +4,7 @@ import { BASE_URL } from "utils/requests";
 import NavBar from "components/NavBar"; // Importe seu componente NavBar
 import SearchBar from "components/SearchBar";
 import DataTable from "components/DataTable";
+import { useNavigate } from "react-router-dom";
 
 import "./styles.css";
 import VendaForm from "components/VendaForm";
@@ -34,12 +35,35 @@ const Lista: React.FC = () => {
     setFilteredData(filtered);
   };
 
+  const navigate = useNavigate();
+
+  const handleBackToHome = () => {
+    navigate("/");
+  };
+
+  const handleLerQRCode = () => {
+    navigate("/");
+  };
+
   return (
     <>
       <NavBar />
-      <div className="dashboard-vendas base-card home">
+      <div className="base-card home">
         <h1>Dashboard Vendas</h1>
-        <VendaForm />
+        <div className="dashboard">
+          <div>
+            <VendaForm />
+          </div>
+          <div className="form-container botoes">
+            <button onClick={handleBackToHome} className="btn btn-secondary">
+              Voltar página inicial
+            </button>
+
+            <button onClick={handleLerQRCode} className="btn btn-primary">
+              Ler QR Code
+            </button>
+          </div>
+        </div>
       </div>
       <div className="table-vendas">
         <h2>Todas Vendas</h2>
