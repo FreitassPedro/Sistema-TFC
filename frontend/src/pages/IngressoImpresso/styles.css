@@ -5,7 +5,6 @@
   min-height: 100vh;
   height: 100%;
   position: relative;
-
 }
 
 .card-main {
@@ -39,7 +38,16 @@
     align-items: center;
     display: flex;
     flex-direction: column;
-    justify-content: center; 
+    justify-content: center;
+
+    span {
+      font-size: 0.9rem;
+      justify-content: center;
+      display: flex;
+      color: #8d8d8d;
+      margin-right: 2px;
+      text-align: center;
+    }
   }
 
   hr {
@@ -91,16 +99,16 @@
   }
 }
 
-.bg-text{
+.bg-text {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   user-select: none;
   font-size: 10rem;
-z-index: 0;
-color: rgb(255, 255, 255);
-  h1{
+  z-index: 0;
+  color: rgb(255, 255, 255);
+  h1 {
     font-size: 20rem;
     filter: opacity(0.05);
   }
