@@ -5,6 +5,7 @@ import com.pedro.tfc.entity.dao.IngressoImpressoDTO;
 import com.pedro.tfc.service.IngressoService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,7 +29,7 @@ public class IngressoController {
 
     @GetMapping("/code/{codigoConsumivel}")
     public ResponseEntity<IngressoImpressoDTO> encontrarIngressoPorCodigoConsumivel(@PathVariable("codigoConsumivel") String codigoConsumivel) {
-        IngressoImpressoDTO ingresso = ingressoService.encontrarIngressoPorCodigoConsumivel(codigoConsumivel);
+        IngressoImpressoDTO ingresso = ingressoService.findIngressoByCodigoConsumivelDTO(codigoConsumivel);
 
         if (ingresso == null) return ResponseEntity.notFound().build();
 
@@ -40,4 +41,20 @@ public class IngressoController {
         Ingresso imp = new Ingresso(50);
         return ResponseEntity.ok(imp);
     }
+
+    @PostMapping("/validar/{codigo}")
+    public ResponseEntity<Void> validarCodigo (@PathVariable("codigo") String codigo) {
+        log.info("Validando código de ingresso: " + codigo);
+
+        Ingresso ingresso = ingressoService.findIngressoByCodigoConsumivel(codigo);
+
+        if (ingresso.getIsConsumido()) return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+
+        ingressoService.consumirIngresso(ingresso);
+        log.info("Ingresso consumido com sucesso! " + ingresso.toString());
+
+
+        return ResponseEntity.ok().build();
+    }
+
 }

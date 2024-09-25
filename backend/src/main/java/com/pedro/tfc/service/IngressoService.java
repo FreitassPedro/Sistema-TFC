@@ -4,18 +4,23 @@ import com.pedro.tfc.entity.Ingresso;
 import com.pedro.tfc.entity.Transacao;
 import com.pedro.tfc.entity.dao.IngressoImpressoDTO;
 import com.pedro.tfc.repository.IngressoRepository;
+import jakarta.persistence.EntityNotFoundException;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 @Service
 public class IngressoService {
 
     @Autowired
     private IngressoRepository ingressoRepository;
+
+    @Autowired
+    private ModelMapper modelMapper;
 
     public List<Ingresso> gerarIngressos(int valorPago, int valorIngresso) {
         if (valorPago < valorIngresso) {
@@ -52,7 +57,22 @@ public class IngressoService {
         return ingressoRepository.listarIngressosImpressos(transacaoId);
     }
 
-    public IngressoImpressoDTO encontrarIngressoPorCodigoConsumivel(String codigoConsumivel) {
-        return ingressoRepository.findByCodigoConsumivel(codigoConsumivel);
+    public IngressoImpressoDTO findIngressoByCodigoConsumivelDTO(String codigoConsumivel) {
+        return ingressoRepository.findByCodigoConsumivelDTO(codigoConsumivel);
+    }
+
+    public Ingresso findIngressoByCodigoConsumivel(String codigoConsumivel) {
+        Ingresso byCodigoConsumivel = ingressoRepository.findByCodigoConsumivel(codigoConsumivel);
+        if (byCodigoConsumivel == null) {
+            throw new EntityNotFoundException("Ingresso não encontrado");
+        }
+        return byCodigoConsumivel;
+    }
+
+    public void consumirIngresso(Ingresso ingresso) {
+        ingresso.setHorarioEntrada(LocalDateTime.now());
+        ingresso.setCoposDisponiveis(3);
+        ingresso.setIsConsumido(true);
+        ingressoRepository.saveAndFlush(ingresso);
     }
 }

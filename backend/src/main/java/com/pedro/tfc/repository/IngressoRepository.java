@@ -7,7 +7,9 @@ import com.pedro.tfc.entity.dao.VendaDTO;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
+import javax.swing.text.html.Option;
 import java.util.List;
+import java.util.Optional;
 
 public interface IngressoRepository extends JpaRepository<Ingresso, Integer> {
 
@@ -35,5 +37,9 @@ public interface IngressoRepository extends JpaRepository<Ingresso, Integer> {
             "FROM Ingresso ing " +
             "INNER JOIN Cliente c ON c.id = ing.cliente.id " +
             "WHERE ing.codigoConsumivel = :codigoConsumivel")
-    IngressoImpressoDTO findByCodigoConsumivel(String codigoConsumivel);
+    IngressoImpressoDTO findByCodigoConsumivelDTO(String codigoConsumivel);
+
+
+    @Query("SELECT ing FROM Ingresso ing WHERE ing.codigoConsumivel = :codigoConsumivel")
+    Ingresso findByCodigoConsumivel(String codigoConsumivel);
 }

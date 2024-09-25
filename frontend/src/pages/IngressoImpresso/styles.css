@@ -9,7 +9,7 @@
 
 .card-main {
   border: 1px solid #ffffff22;
-  max-width: 320px;
+  max-width: 370px;
   margin: 0 auto;
   background: linear-gradient(0deg, #26165f 0%, #11002080 100%);
   box-shadow: 0 7px 20px 5px #000;
@@ -58,10 +58,9 @@
     margin-top: 0;
   }
   .box-image {
-    border-radius: 0.5rem;
+    border-radius: 0.7rem;
     max-width: 100%;
-    object-fit: cover;
-    height: 250px;
+    height: 270px;
   }
 
   .code-text {
