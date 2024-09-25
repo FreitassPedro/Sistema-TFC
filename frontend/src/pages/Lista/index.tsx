@@ -42,7 +42,7 @@ const Lista: React.FC = () => {
   };
 
   const handleLerQRCode = () => {
-    navigate("/");
+    navigate("/ingresso/scan");
   };
 
   return (
