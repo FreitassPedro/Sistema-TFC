@@ -80,8 +80,7 @@ const ScannerQRCode = () => {
   const { videoEl, scanner } = useQrScanner(handleScanSuccess, handleScanFail);
   const qrBoxEl = useRef<HTMLDivElement>(null); // Adicionando de volta a referência qrBoxEl
 
-  // Removed useEffect related to qrOn as it is no longer used
-
+  // Função para validar a entrada
   const handleValidarEntrada = () => {
     axios
       .post(`${BASE_URL}/api/ingresso/validar/` + ingresso?.codigoConsumivel)

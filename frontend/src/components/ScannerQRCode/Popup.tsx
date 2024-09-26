@@ -1,13 +1,10 @@
 import React from "react";
 import { Ingresso } from "types/Ingresso";
-
-
 interface PopupPros {
   onClose: () => void;
   ingresso: Ingresso | null;
   onValidarEntrada: () => void;
 }
-
 const Popup: React.FC<PopupPros> = ({
   onClose,
   ingresso,
@@ -28,16 +25,15 @@ const Popup: React.FC<PopupPros> = ({
             </p>
           </div>
         </div>
-
         <div className="buttons">
           <button className="btn" onClick={onClose}>Fechar</button>
           <button className="btn btn-success" onClick={onValidarEntrada}>Validar Entrada</button>
         </div>
       </div>
-
       <div></div>
     </div>
   );
 };
+
 
 export default Popup;
