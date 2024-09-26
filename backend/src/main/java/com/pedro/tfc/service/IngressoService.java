@@ -27,7 +27,7 @@ public class IngressoService {
             throw new IllegalArgumentException("Valor pago é menor que o valor do ingresso");
         }
 
-        int quantiaIngressos = valorIngresso / valorPago;
+        int quantiaIngressos = valorPago / valorIngresso;
 
         return gerarListaIngressos(quantiaIngressos, valorIngresso);
     }

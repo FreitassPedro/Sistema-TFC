@@ -6,10 +6,13 @@ import "./styles.css";
 import axios from "axios";
 import { BASE_URL } from "utils/requests";
 import { Ingresso } from "types/Ingresso";
-
+import Popup from "./Popup";
 
 // Hook personalizado para inicializar e limpar o scanner
-const useQrScanner = (onScanSuccess: (result: QrScanner.ScanResult) => void, onScanFail: (err: string | Error) => void) => {
+const useQrScanner = (
+  onScanSuccess: (result: QrScanner.ScanResult) => void,
+  onScanFail: (err: string | Error) => void
+) => {
   const scanner = useRef<QrScanner>();
   const videoEl = useRef<HTMLVideoElement>(null);
 
@@ -28,22 +31,22 @@ const useQrScanner = (onScanSuccess: (result: QrScanner.ScanResult) => void, onS
         scanner.current.stop();
       }
     };
-  }, [videoEl]);
+  }, [onScanFail, onScanSuccess, videoEl]);
 
   return { videoEl, scanner };
 };
 
 const ScannerQRCode = () => {
-  const [qrOn, setQrOn] = useState<boolean>(true);
+  // const [qrOn, setQrOn] = useState<boolean>(true); // Removed unused state
   const [ingresso, setIngresso] = useState<Ingresso | null>(null);
-  const [scannedResult, setScannedResult] = useState<string | undefined>("");
   const [isProcessing, setIsProcessing] = useState<boolean>(false);
+
+  const [showPopup, setShowPopup] = useState(false);
 
   // Função de sucesso ao escanear
   const handleScanSuccess = (result: QrScanner.ScanResult) => {
     if (isProcessing) return;
 
-    setScannedResult("Código: " + result?.data);
     setIsProcessing(true);
 
     if (scanner.current) {
@@ -54,6 +57,7 @@ const ScannerQRCode = () => {
       .get(`${BASE_URL}/api/ingresso/code/` + result?.data)
       .then((response) => {
         setIngresso(response.data);
+        setShowPopup(true);
       })
       .catch((error) => {
         setIsProcessing(false);
@@ -76,7 +80,8 @@ const ScannerQRCode = () => {
   const { videoEl, scanner } = useQrScanner(handleScanSuccess, handleScanFail);
   const qrBoxEl = useRef<HTMLDivElement>(null); // Adicionando de volta a referência qrBoxEl
 
-  // Função para validar a entrada
+  // Removed useEffect related to qrOn as it is no longer used
+
   const handleValidarEntrada = () => {
     axios
       .post(`${BASE_URL}/api/ingresso/validar/` + ingresso?.codigoConsumivel)
@@ -92,27 +97,40 @@ const ScannerQRCode = () => {
             alert("Ingresso não encontrado.");
             break;
           default:
-            alert("Algum erro ocorreu na validação do ingresso. Por favor, tente novamente.");
+            alert(
+              "Algum erro ocorreu na validação do ingresso. Por favor, tente novamente."
+            );
         }
+      })
+      .finally(() => {
+        setShowPopup(false); // Fechar o pop-up após a validação (sucesso ou erro)
       });
   };
-
-  useEffect(() => {
-    if (!qrOn) {
-      alert("Camera is blocked or not accessible. Please allow camera in your browser permissions and Reload.");
-    }
-  }, [qrOn]);
-
-
   return (
-    <div className="card-main">
-      <video ref={videoEl} style={{ width: "100%" }} />
-      <div ref={qrBoxEl} style={{ position: "relative" }}>
-        <img src={QrFrame} alt="QR Frame" style={{ position: "absolute", top: 0, left: 0 }} />
+    <>
+      <div className="scanner-home">
+        <p>Ler QR Code</p>
+        <div>
+          <div className="card-main">
+            <video ref={videoEl} style={{ width: "100%" }} />
+            <div ref={qrBoxEl} style={{ position: "relative" }}>
+              <img
+                src={QrFrame}
+                alt="QR Frame"
+                style={{ position: "absolute", top: 0, left: 0 }}
+              />
+            </div>
+          </div>
+          {showPopup && (
+            <Popup
+              onClose={() => setShowPopup(false)}
+              onValidarEntrada={handleValidarEntrada}
+              ingresso={ingresso}
+            />
+          )}
+        </div>
       </div>
-      
-      {scannedResult && <p>Scanned Result: {scannedResult}</p>}
-    </div>
+    </>
   );
 };
 

@@ -50,26 +50,6 @@ public class CompraController {
         return ResponseEntity.status(HttpStatus.CREATED).body(transacao);
     }
 
-    private PedidoDTO gerarPedidoTeste() {
-        int valorPago = 300;
-        int valorIngresso = 50;
-        String instagramComprovante = "@...";
-        List<String> nomes = new ArrayList<>();
-        nomes.add("Pedro");
-        nomes.add("Fabuloso");
-        nomes.add("Cristiano Ronaldo Jr.");
-        nomes.add("Messi Felipe Neto");
-        nomes.add("Neymar da Silva Santos Júnior");
-        nomes.add("Zé Pequeno da Rocinha");
-
-        PedidoDTO pedidoDTO = new PedidoDTO(valorPago, valorIngresso, nomes, instagramComprovante);
-
-        return pedidoDTO;
-    }
-
-
-
-
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deletarTransacao(@PathVariable int id) {
         transacaoService.deletarTransacao(id);
