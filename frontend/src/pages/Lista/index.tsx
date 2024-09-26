@@ -54,7 +54,7 @@ const Lista: React.FC = () => {
           <div>
             <VendaForm />
           </div>
-          <div className="form-container botoes">
+          <div className="form-container">
             <button onClick={handleBackToHome} className="btn btn-secondary">
               Voltar página inicial
             </button>

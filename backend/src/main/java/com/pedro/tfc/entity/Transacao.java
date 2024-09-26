@@ -35,9 +35,6 @@ public class Transacao {
     @Column(name = "instagram_comprovante")
     private String instagramComprovante;
 
-    @Column(name = "is_valid")
-    private Boolean isValid = true;
-
     public void adicionarIngresso(Ingresso ingresso) {
         if (this.ingresso == null) this.ingresso = new ArrayList<>();
 
